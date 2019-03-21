@@ -67,10 +67,10 @@ class Repo(object):
 
         out, err = [x.decode("utf-8") for x in  proc.communicate()]
 
-        if proc.returncode:
-            cmd = "git " + " ".join(args)
-            raise GitException("Error running %s:\n\tErr: %s\n\tOut: %s\n\tExit: %s"
-                            % (cmd,err,out,proc.returncode), exit_code=proc.returncode)
+        # if proc.returncode:
+        #     cmd = "git " + " ".join(args)
+        #     raise GitException("Error running %s:\n\tErr: %s\n\tOut: %s\n\tExit: %s"
+        #                     % (cmd,err,out,proc.returncode), exit_code=proc.returncode)
         return out
 
     def git_command(self, *args):
