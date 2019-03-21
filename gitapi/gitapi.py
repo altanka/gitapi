@@ -155,7 +155,7 @@ class Repo(object):
             args.append("--close-branch")
         if files:
             args.extend(userspec)
-            args.append(files)
+            args.extend(files)
         else:
             args.extend(*userspec)
         self.git_command("commit", "-m", *args)
