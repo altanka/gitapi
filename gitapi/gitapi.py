@@ -150,9 +150,14 @@ class Repo(object):
     def git_commit(self, message, user=None, files=[], close_branch=False):
         """Commit changes to the repository."""
         userspec = (['--author', user] if user else ['--author', self.user] if self.user else [])
-        close = "--close-branch" if close_branch else ""
-        self.git_command("commit", "-m", message, close,
-                        *userspec + files)
+        args = [message]
+        if close_branch:
+            args.append("--close-branch")
+        if files:
+            args.append(*userspec + files)
+        else:
+            args.append(*userspec)
+        self.git_command("commit", "-m", *args)
 
     def git_log(self, identifier=None, limit=None, template=None, **kwargs):
         """Get repositiory log"""
