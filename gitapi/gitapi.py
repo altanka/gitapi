@@ -205,7 +205,7 @@ class Repo(object):
         """Push changes from this repo."""
         args = [arg for arg in (destination, branch)
                 if arg is not None]
-        self.git_command("push", *args)
+        return self.git_command("push", *args)
 
     def git_pull(self, source=None, rebase=False):
         """Pull changes to this repo."""
