@@ -72,7 +72,8 @@ class Repo(object):
             # raise GitException("Error running %s:\n\tErr: %s\n\tOut: %s\n\tExit: %s"
             #                 % (cmd,err,out,proc.returncode), exit_code=proc.returncode)
             print("Error running %s:\n\tErr: %s\n\tOut: %s\n\tExit: %s" % (cmd, err, out, proc.returncode))
-        return out
+        cmd = "git " + " ".join(args)
+        return "Running %s:\n\tErr: %s\n\tOut: %s\n\tExit: %s" % (cmd, err, out, proc.returncode)
 
     def git_command(self, *args):
         """Run a git command on this repo and return the result.
