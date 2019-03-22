@@ -9,7 +9,7 @@ def onfserror(delegate, path, exec_info):
         os.chmod(path, stat.S_IWUSR)
         delegate(path)
     else:
-        raise
+        raise Exception
 
 class TestGitAPI(unittest.TestCase):
     """Tests for gitapi.py

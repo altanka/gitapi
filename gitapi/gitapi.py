@@ -65,7 +65,7 @@ class Repo(object):
             path = '.'
         proc = Popen(["git"] + list(args), stdout=PIPE, stderr=PIPE, cwd=path)
 
-        out, err = [x.decode("utf-8") for x in  proc.communicate()]
+        out, err = [x.decode("utf-8") for x in proc.communicate()]
 
         if proc.returncode:
             cmd = "git " + " ".join(args)
@@ -90,7 +90,7 @@ class Repo(object):
 
     def git_add(self, filepath):
         """Add a file to the repo"""
-        self.git_command("add", filepath)
+        return self.git_command("add", filepath)
 
     def git_remove(self, filepath):
         """Remove a file from the repo"""
@@ -159,7 +159,7 @@ class Repo(object):
             args.extend(files)
         else:
             args.extend(*userspec)
-        self.git_command("commit", "-m", *args)
+        return self.git_command("commit", "-m", *args)
 
     def git_log(self, identifier=None, limit=None, template=None, **kwargs):
         """Get repositiory log"""
